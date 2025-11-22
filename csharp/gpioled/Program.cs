@@ -1,14 +1,17 @@
-﻿// See https://aka.ms/new-console-template for more information
-// Console.WriteLine("Hello, World!");
+﻿// code based on the kitt-leds.py, but written in c-sharp
 
 using System.Device.Gpio;
 
+// initial state 
 int blink = 1;
 
+// define pins as variables
 int redLed = 16;
 int yellowLed = 20;
 int greenLed = 21;
 
+
+// setup output for pins
 using GpioController controller = new GpioController();
 controller.OpenPin(redLed, PinMode.Output);
 controller.OpenPin(yellowLed, PinMode.Output);
@@ -43,4 +46,3 @@ while (true)
 
 	await Task.Delay(TimeSpan.FromSeconds(1));
 }
-

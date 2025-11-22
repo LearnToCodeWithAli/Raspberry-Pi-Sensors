@@ -1,4 +1,7 @@
 # https://docs.sunfounder.com/projects/umsk/en/latest/05_raspberry_pi/pi_lesson22_touch_sensor.html
+#This code will turn on the LEDs when the touch sensor is pushed.
+# S stands for serial and should be connected to the corresponding GPIO pin and a resistor greater than 1M ohms
+#VCC can be connected to 3.3V, ground must be connected to ground
 
 from gpiozero import Button
 from signal import pause

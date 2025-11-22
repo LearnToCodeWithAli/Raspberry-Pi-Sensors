@@ -7,9 +7,19 @@ GPIO.setup(21,GPIO.OUT)
 print ("LED on")
 
 count = 5
-while count > 0:
-    GPIO.output(20,GPIO.HIGH)
-    GPIO.output(21,GPIO.HIGH)
+
+blink = True
+while True:
+    
+    if blink:
+        GPIO.output(20,GPIO.HIGH)
+        GPIO.output(21,GPIO.LOW)
+        blink = not blink
+    else:
+        GPIO.output(20,GPIO.LOW)
+        GPIO.output(21,GPIO.HIGH)
+        blink = not blink
+        
     time.sleep(1)
     count -= 1
     

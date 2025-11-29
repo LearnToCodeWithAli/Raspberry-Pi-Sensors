@@ -1,7 +1,7 @@
 import PCF8591 as ADC  # Import the library for the PCF8591 module
 import time  # Import the time library for adding delays
 
-#https://docs.keyestudio.com/projects/KS0399-KS0400-KS0401/en/latest/KS0399%2C0400%2C0401.html
+# https://docs.keyestudio.com/projects/KS0399-KS0400-KS0401/en/latest/KS0399%2C0400%2C0401.html
 # Initialize the PCF8591 module at I2C address 0x48.
 # This address is used for communication with the Raspberry Pi.
 ADC.setup(0x48)
@@ -17,7 +17,7 @@ try:
         # Write the value back to AOUT. This will change the brightness of the D2 LED on the module.
         # LED won't light up below 80, so convert '0-255' to '80-255'
         # As the potentiometer is adjusted, the LED's brightness varies proportionally.
-        tmp = potentiometer_value*(255-80)/255+80
+        tmp = potentiometer_value * (255 - 80) / 255 + 80
         ADC.write(tmp)
 
         # Add a short delay of 0.2 seconds to make the loop more manageable.

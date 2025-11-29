@@ -1,0 +1,26 @@
+{
+    "title": "Melody 2",
+    "melody": [
+        "NOTE_C4",
+        "NOTE_D4",
+        "NOTE_F4",
+        "NOTE_D4",
+        "NOTE_A4",
+        "REST",
+        "NOTE_A4",
+        "NOTE_G4",
+        "REST",
+        "NOTE_C4",
+        "NOTE_D4",
+        "NOTE_F4",
+        "NOTE_D4",
+        "NOTE_G4",
+        "REST",
+        "NOTE_G4",
+        "NOTE_F4",
+        "REST"
+    ],
+    "duration": [1, 1, 1, 1, 1, 1, 4, 4, 2, 1, 1, 1, 1, 1, 1, 4, 4, 2],
+    "tempo": 108,
+    "pause": 0.01
+}

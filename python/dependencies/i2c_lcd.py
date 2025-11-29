@@ -26,10 +26,10 @@ class I2cLcd(LcdApi):
         self.i2c_addr = i2c_addr
         self.bus = smbus.SMBus(port)
         self.bus.write_byte(self.i2c_addr, 0)
-        time.sleep(0.020)    # Allow LCD time to powerup
+        time.sleep(0.020)  # Allow LCD time to powerup
         # Send reset 3 times
         self.hal_write_init_nibble(self.LCD_FUNCTION_RESET)
-        time.sleep(0.005)   # need to delay at least 4.1 msec
+        time.sleep(0.005)  # need to delay at least 4.1 msec
         self.hal_write_init_nibble(self.LCD_FUNCTION_RESET)
         time.sleep(0.001)
         self.hal_write_init_nibble(self.LCD_FUNCTION_RESET)
@@ -48,7 +48,7 @@ class I2cLcd(LcdApi):
 
         This particular function is only used during initialization.
         """
-        byte = ((nibble >> 4) & 0x0f) << SHIFT_DATA
+        byte = ((nibble >> 4) & 0x0F) << SHIFT_DATA
         self.bus.write_byte(self.i2c_addr, byte | MASK_E)
         self.bus.write_byte(self.i2c_addr, byte)
 
@@ -69,12 +69,10 @@ class I2cLcd(LcdApi):
 
         Data is latched on the falling edge of E.
         """
-        byte = ((self.backlight << SHIFT_BACKLIGHT) |
-                (((cmd >> 4) & 0x0f) << SHIFT_DATA))
+        byte = (self.backlight << SHIFT_BACKLIGHT) | (((cmd >> 4) & 0x0F) << SHIFT_DATA)
         self.bus.write_byte(self.i2c_addr, byte | MASK_E)
         self.bus.write_byte(self.i2c_addr, byte)
-        byte = ((self.backlight << SHIFT_BACKLIGHT) |
-                ((cmd & 0x0f) << SHIFT_DATA))
+        byte = (self.backlight << SHIFT_BACKLIGHT) | ((cmd & 0x0F) << SHIFT_DATA)
         self.bus.write_byte(self.i2c_addr, byte | MASK_E)
         self.bus.write_byte(self.i2c_addr, byte)
         if cmd <= 3:
@@ -84,13 +82,17 @@ class I2cLcd(LcdApi):
 
     def hal_write_data(self, data):
         """Write data to the LCD."""
-        byte = (MASK_RS |
-                (self.backlight << SHIFT_BACKLIGHT) |
-                (((data >> 4) & 0x0f) << SHIFT_DATA))
+        byte = (
+            MASK_RS
+            | (self.backlight << SHIFT_BACKLIGHT)
+            | (((data >> 4) & 0x0F) << SHIFT_DATA)
+        )
         self.bus.write_byte(self.i2c_addr, byte | MASK_E)
         self.bus.write_byte(self.i2c_addr, byte)
-        byte = (MASK_RS |
-                (self.backlight << SHIFT_BACKLIGHT) |
-                ((data & 0x0f) << SHIFT_DATA))
+        byte = (
+            MASK_RS
+            | (self.backlight << SHIFT_BACKLIGHT)
+            | ((data & 0x0F) << SHIFT_DATA)
+        )
         self.bus.write_byte(self.i2c_addr, byte | MASK_E)
         self.bus.write_byte(self.i2c_addr, byte)

@@ -1,3 +1,11 @@
+# I2C version - https://www.freva.com/how-to-connect-an-lcd-display-to-a-raspberry-pi/
+# https://learn.adafruit.com/drive-a-16x2-lcd-directly-with-a-raspberry-pi/overview use fr diagram
+#non-normal behavior (cannot find i2c) https://learn.adafruit.com/scanning-i2c-addresses/raspberry-pi
+
+
+#activate the venv before running or installing dependencies
+#source raspberry-pi/bin/activate
+
 import RPi.GPIO as GPIO
 from sys import version_info
 from time import sleep
@@ -234,8 +242,8 @@ def main():
     global lcd
     print_msg()
     lcd = LCD()
-    line0 = "  sunfounder.com"
-    line1 = "---SUNFOUNDER---"
+    line0 = "  fun times"
+    line1 = "---DUST BUNNY---" # must be 16 characters or less
 
     lcd.clear()
     lcd.message("Welcome to --->\n  sunfounder.com")

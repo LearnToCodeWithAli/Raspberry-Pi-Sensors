@@ -1,22 +1,30 @@
 # https://docs.sunfounder.com/projects/superkit-v2-pi/en/latest/Lesson_6_buzzer.html
 
-#needs 1k ohm resistor
-
-#Libraries
 import RPi.GPIO as GPIO
 from time import sleep
-#Disable warnings (optional)
+
+# Disable warnings
 GPIO.setwarnings(False)
-#Select GPIO mode
+
+# Select GPIO mode
 GPIO.setmode(GPIO.BCM)
-#Set buzzer - pin 23 as output
-buzzer=13
-GPIO.setup(buzzer,GPIO.OUT)
-#Run forever loop
-while True:
-    GPIO.output(buzzer,GPIO.HIGH)
-    print ("Beep")
-    sleep(0.5) # Delay in seconds
-    GPIO.output(buzzer,GPIO.LOW)
-    print ("No Beep")
-    sleep(0.5)
+
+# Set buzzer pin (Make sure your wire is on GPIO 13)
+buzzer = 13
+GPIO.setup(buzzer, GPIO.OUT)
+
+try:
+    while True:
+        # Turn buzzer ON
+        GPIO.output(buzzer, GPIO.HIGH)
+        print("Beep")
+        sleep(1.5) 
+
+        # Turn buzzer OFF
+        GPIO.output(buzzer, GPIO.LOW)
+        print("No Beep")
+        sleep(1.5)
+
+except KeyboardInterrupt:
+    # Cleans up the pins if you press Ctrl+C
+    GPIO.cleanup()
